@@ -11,26 +11,25 @@ var SpeechRecognition = window.webkitSpeechRecognition;
 var recognition = new SpeechRecognition();
 
 function preload(){
-  apple = loadImage("apple.png");
+  apple = loadImage("robot.jpg");
 }
 function start()
 {
   document.getElementById("status").innerHTML = "System is listening please speak";  
   recognition.start();
 } 
- 
-recognition.onresult = function(event) {
+recognition.onresult = function(event) 
+{
+   console.log(event); 
+   content = event.results[0][0].transcript;
   to_number = Number(content);
   if(Number.isInteger(to_number)){
-    document.getElementById("status").innerHTML = "Started drawing apple.";
+    document.getElementById("status").innerHTML = "Started drawing robot/robots.";
     draw_apple = "set";
   }
   else{
     document.getElementById("status").innerHTML = "The speech has not recognized a number";
   }
- console.log(event); 
-
- content = event.results[0][0].transcript;
 
     document.getElementById("status").innerHTML = "The speech has been recognized: " + content; 
 
